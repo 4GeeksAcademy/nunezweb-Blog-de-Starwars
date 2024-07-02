@@ -2,9 +2,13 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../../styles/navbar.css";
 import logoStarWars from "../../img/logosw.png";
+import { Context } from "../store/appContext";
+
 
 export const Navbar = () => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
+	const {store,actions} = useContext(Context);
+
 
   return (
     <nav className="navbar navbar-dark bg-dark m-0 py-3">
@@ -42,6 +46,20 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
+	  <div>
+                <div className="btn-group botonFav">
+                    <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Favoritos {store.fav.length}
+                    </button>
+                    <ul className="dropdown-menu">
+                        {store.favoriteStore.map((item, index) => (
+                            <li key={index}>
+                                <a className="dropdown-item">{item}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
     </nav>
   );
 };
