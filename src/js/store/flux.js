@@ -37,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         `${store.apiUrl}/people/1`
                     );
                     const data = await response.json();
-                    console.log('Response Items:', data.results);
+                    console.log('Response Item:', data.results);
                     if (response.ok) {
                         setStore({ characterscardsitems: data.results });
 						console.log('Updated Store:', getStore());
@@ -48,26 +48,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.error("Error fetching characters:", error);
                     setStore({ characterscardsitems: [] });
-                    return false;
-                }
-            },
-			
-			characterdetails: async (uid) => {
-                const store = getStore();
-                try {
-                    const response = await fetch(`${store.apiUrl}/people/${uid}`);
-                    const data = await response.json();
-                    console.log('Character Details Data:', data.result); // Agregado para depuración
-                    if (response.ok) {
-                        setStore({ characterscards: [data.result.properties] }); // Ajuste para acceder a los detalles del personaje
-                        console.log('Updated Store:', getStore()); // Agregado para depuración
-                        return true;
-                    }
-                    setStore({ characterscards: [] });
-                    return false;
-                } catch (error) {
-                    console.error("Error fetching character details:", error);
-                    setStore({ characterscards: [] });
                     return false;
                 }
             },
