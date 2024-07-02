@@ -1,43 +1,46 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			characterscards: [],
+      		apiUrl: "https://www.swapi.tech/api",
+			favoriteStore: []
 		},
 		actions: {
+			getCharactersCards: async () => {
+				const store = getStore();
+				try {
+				  const response = await fetch(
+					`${store.apiUrl}/people?page=1&limit=10`
+				  );
+				  const data = await response.json();
+				  console.log('Response Data:', data);
+				  if (response.ok) {
+					setStore({ characterscards: data.characterscards });
+					return true;
+				  }
+				  setStore({ characterscards: false });
+				  return false;
+				} catch (error) {
+					console.error("Error fetching characters:", error);
+				  setStore({ characterscards: false });
+				  return false;
+				}
+			  },
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			favorite: (favoriteName) => {
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				if (store.favoriteStore.includes(favoriteName)){
+					setStore({favoriteStore:store.favoriteStore.filter((nameCharacter) => nameCharacter != favoriteName)});
+				} else {
+					setStore({favoriteStore:[...store.favoriteStore,favoriteName]});
+				}
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			},
+
 		}
 	};
 };
