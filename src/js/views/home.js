@@ -27,17 +27,6 @@ export const Home = () => (
             style={{ maxWidth: "100%", whiteSpace: "nowrap" }}
           >
             <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
-            <StarshipsCards />
           </div>{" "}
         </div>{" "}
       </div>{" "}

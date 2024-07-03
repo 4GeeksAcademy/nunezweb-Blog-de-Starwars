@@ -9,7 +9,7 @@ export const Navbar = () => {
     const { store, actions } = useContext(Context);
 
     return (
-        <nav className="navbar navbar-dark bg-dark m-0 py-3">
+        <nav className="navbar navbar-dark fixed-top bg-dark py-3">
             <div className="container-fluid d-flex">
                 <div className="container-fluid d-flex justify-content-between align-items-center">
                     <Link to="/">
@@ -28,7 +28,7 @@ export const Navbar = () => {
                             {store.favoriteStore && store.favoriteStore.length > 0 ? (
                                 store.favoriteStore.map((item, index) => (
                                     <li key={index}>
-                                        <a className="dropdown-item">{item}</a>
+                                        <a className="dropdown-item">{item}</a><i class="fas fa-trash-alt"></i>
                                     </li>
                                 ))
                             ) : (

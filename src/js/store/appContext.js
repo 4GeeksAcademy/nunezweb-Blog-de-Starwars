@@ -23,6 +23,7 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 			state.actions.getCharactersCards();
+			state.actions.getStarshipsCards();
 			state.actions.getCharactersCardsItems()
 			/**
 			 * EDIT THIS!

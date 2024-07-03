@@ -7,14 +7,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			starshipscards: [],
 			characterscardsitems: [],
             favoriteStore: [],
-            apiUrl: "https://www.swapi.tech/api"
+            apiUrl: "https://swapi.dev/api"
         },
         actions: {
             getCharactersCards: async () => {
                 const store = getStore();
                 try {
                     const response = await fetch(
-                        `${store.apiUrl}/people?page=1&limit=10`
+                        `${store.apiUrl}/people/?page=1&limit=10`
                     );
                     const data = await response.json();
                     console.log('Response Data:', data.results);
@@ -27,6 +27,26 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.error("Error fetching characters:", error);
                     setStore({ characterscards: [] });
+                    return false;
+                }
+            },
+            getStarshipsCards: async () => {
+                const store = getStore();
+                try {
+                    const response = await fetch(
+                        `${store.apiUrl}/starships/`
+                    );
+                    const data = await response.json();
+                    console.log('Response Data:', data.results);
+                    if (response.ok) {
+                        setStore({ starshipscards: data.results });
+                        return true;
+                    }
+                    setStore({ starshipscards: [] });
+                    return false;
+                } catch (error) {
+                    console.error("Error fetching characters:", error);
+                    setStore({ starshipscards: [] });
                     return false;
                 }
             },
