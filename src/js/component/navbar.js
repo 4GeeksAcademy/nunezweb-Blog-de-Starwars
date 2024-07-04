@@ -9,7 +9,7 @@ export const Navbar = () => {
     const { store, actions } = useContext(Context);
 
     return (
-        <nav className="navbar navbar-dark fixed-top bg-dark py-3">
+        <nav className="navbar navbar-dark sticky-top bg-dark py-3">
             <div className="container-fluid d-flex">
                 <div className="container-fluid d-flex justify-content-between align-items-center">
                     <Link to="/">

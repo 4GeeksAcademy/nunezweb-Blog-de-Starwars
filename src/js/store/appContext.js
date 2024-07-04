@@ -23,8 +23,9 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 			state.actions.getCharactersCards();
-			state.actions.getStarshipsCards();
-			state.actions.getCharactersCardsItems()
+			// state.actions.getStarshipsCards();
+			state.actions.swapiFetch("people",1)
+			state.actions.swapiFetch("starships",1)
 			/**
 			 * EDIT THIS!
 			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime

@@ -7,6 +7,9 @@ const StarshipsCards = () => {
 
     return (
         <div className="d-flex overflow-auto">
+                <div>
+    <pre>{JSON.stringify(store.people.uid)}</pre>
+    </div>
             {store.starshipscards && store.starshipscards.length > 0 ? (
                 store.starshipscards.map((item, index) => (
                     <div key={index} className="card me-3" style={{ minWidth: '300px' }}>
