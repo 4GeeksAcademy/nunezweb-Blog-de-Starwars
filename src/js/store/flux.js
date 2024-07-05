@@ -8,7 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       characterscards: [],
       starshipscards: [],
       favoriteStore: [],
-      people: [],
+      // people: [],
       apiUrl: "https://swapi.tech/api",
     },
     actions: {

@@ -8,6 +8,8 @@ export const Navbar = () => {
     const navigate = useNavigate();
     const { store, actions } = useContext(Context);
 
+
+
     return (
         <nav className="navbar navbar-dark sticky-top bg-dark py-3">
             <div className="container-fluid d-flex">
