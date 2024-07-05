@@ -4,6 +4,12 @@ import { Context } from "../store/appContext";
 import "../../styles/details.css";
 
 const CharacterDetails = () => {
+  const { store, actions } = useContext(Context);
+  const uidDetails = store.storeClicUid;
+  const uidCharacterDetails = (store.detailedCharacters[uidDetails] || {});
+  console.log("Detalles uidCharacterDetails", uidCharacterDetails);
+  console.log("Detalles uid", uidDetails);
+
   return (
     <div>
       <div className="container my-5">
@@ -15,6 +21,8 @@ const CharacterDetails = () => {
               alt="..."
             />
           </div>
+
+          <h5 className="card-title">{item.name}</h5>
           <div className="col d-flex flex-column justify-content-center align-items-center">
             <h1>Luke Skywalker</h1>
             <p>

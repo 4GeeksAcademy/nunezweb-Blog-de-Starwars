@@ -4,14 +4,19 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       detailedCharacters: {},
+      descriptionCharacters: [],
       detailedStarships: {},
       characterscards: [],
       starshipscards: [],
       favoriteStore: [],
+      storeClicUid: null,
       // people: [],
       apiUrl: "https://swapi.tech/api",
     },
     actions: {
+      getStoreClicUid: (uid) => {
+        setStore({ storeClicUid: uid});
+      },
       getCharactersCards: async () => {
         const store = getStore();
         try {
@@ -22,18 +27,20 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (response.ok) {
             // Traer detalles de cada personaje
             const detailedCharacters = {};
+            const descriptionCharacters =[];
             for (let character of data.results) {
               const charResponse = await fetch(character.url);
               const charData = await charResponse.json();
               if (charResponse.ok) {
                 detailedCharacters[character.uid] = charData.result.properties;
+                descriptionCharacters[character.uid] = charData.result.description;
               }
             }
             setStore({ characterscards: data.results, detailedCharacters });
             console.log("Contenido completo del store1:", getStore());
             return true;
           }
-          setStore({ characterscards: [], detailedCharacters: {} });
+          setStore({ characterscards: [], detailedCharacters: {}, descriptionCharacters: [] });
           return false;
         } catch (error) {
           console.error("Error fetching characters:", error);
