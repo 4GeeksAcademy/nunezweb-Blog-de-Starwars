@@ -12,6 +12,7 @@ import { Footer } from "./component/footer";
 import CharacterCards from "./views/CharactersCards";
 import CharacterDetails from "./views/CharacterDetails";
 import StarshipDetails from "./views/StarshipDetails";
+import NotFoundPage from "./views/NotFoundPage";
 
 //create your first component
 const Layout = () => {
@@ -28,9 +29,7 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/characterdetails/:uid" element={<CharacterDetails />} />
 						<Route path="/starshipdetails" element={<StarshipDetails />} />
-						{/* <Route path="/characterdetails/:id" element={<CharacterDetails />} />
-						<Route path="/planetdetails/:id" element={<PlanetDetails />} /> */}
-						<Route path="*" element={<h1>Not found!</h1>} />
+						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>

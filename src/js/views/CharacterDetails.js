@@ -1,14 +1,28 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/details.css";
 
 const CharacterDetails = () => {
   const { store, actions } = useContext(Context);
-  const uidDetails = store.storeClicUid;
-  const uidCharacterDetails = (store.detailedCharacters[uidDetails] || {});
-  console.log("Detalles uidCharacterDetails", uidCharacterDetails);
-  console.log("Detalles uid", uidDetails);
+  const params = useParams();
+  // const uidDetails = store.storeClicUid;
+  // const uidCharacterDetails = store.detailedCharacters[uidDetails] || {};
+  // const uidCharacterDescription = store.descriptionCharacters[uidDetails] || {};
+
+  useEffect (() => {
+    if (params.id) {
+      const id = Number(params.id);
+      const existingId = store.
+
+    }
+  });
+
+  // useEffect(() => {
+  //   if (!uidDetails) {
+  //     console.error("No character UID found in store");
+  //   }
+  // }, [uidDetails]);
 
   return (
     <div>
@@ -16,25 +30,14 @@ const CharacterDetails = () => {
         <div className="row">
           <div className="col">
             <img
-              src="https://picsum.photos/800/600"
+              src={`https://starwars-visualguide.com/assets/img/characters/${uidDetails}.jpg`}
               className="card-img-top"
-              alt="..."
+              alt="Star Wars"
             />
           </div>
-
-          <h5 className="card-title">{item.name}</h5>
           <div className="col d-flex flex-column justify-content-center align-items-center">
-            <h1>Luke Skywalker</h1>
-            <p>
-              Hunter is a strong and stoic soldier with a special set of skills.
-              As the leader of the Bad Batch,—technically known as Clone Force
-              99, a group formed as the result of Kaminoan experiments to create
-              a specialist unit of clone commandos—Hunter has extraordinarily
-              keen senses that give him an edge when tracking down his targets.
-              But his allegiance has been tested in the aftermath of Order 66,
-              and his duty is now to Clone Force 99 alone, including the newest
-              member, young Omega.
-            </p>
+            <h1>{uidCharacterDetails.name}</h1>
+            <p>{uidCharacterDescription}</p>
           </div>
         </div>
       </div>
@@ -43,27 +46,27 @@ const CharacterDetails = () => {
         <div className="row text-center text-danger">
           <div className="col-2">
             <h2 className="fs-3">Name</h2>
-            <p className="fs-5">Luke</p>
+            <p className="fs-5">{uidCharacterDetails.name}</p>
           </div>
           <div className="col-2">
             <h2 className="fs-3">Birth Year</h2>
-            <p className="fs-5">35</p>
+            <p className="fs-5">{uidCharacterDetails.birth_year}</p>
           </div>
           <div className="col-2">
             <h2 className="fs-3">Gender</h2>
-            <p className="fs-5">Male</p>
+            <p className="fs-5">{uidCharacterDetails.gender}</p>
           </div>
           <div className="col-2">
             <h2 className="fs-3">Height</h2>
-            <p className="fs-5">10"</p>
+            <p className="fs-5">{uidCharacterDetails.height}</p>
           </div>
           <div className="col-2">
             <h2 className="fs-3">Skin Color</h2>
-            <p className="fs-5">Brown</p>
+            <p className="fs-5">{uidCharacterDetails.skin_color}</p>
           </div>
           <div className="col-2">
-            <h2 className=" fs-3">Eye Color</h2>
-            <p className="fs-5">Brown</p>
+            <h2 className="fs-3">Eye Color</h2>
+            <p className="fs-5">{uidCharacterDetails.eye_color}</p>
           </div>
         </div>
       </div>

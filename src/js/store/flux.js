@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       detailedCharacters: {},
-      descriptionCharacters: [],
+      descriptionCharacters: {},
       detailedStarships: {},
       characterscards: [],
       starshipscards: [],
@@ -27,24 +27,24 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (response.ok) {
             // Traer detalles de cada personaje
             const detailedCharacters = {};
-            const descriptionCharacters =[];
+            const descriptionCharacters = {}; // prueba modificacione descriptionCharacters
             for (let character of data.results) {
               const charResponse = await fetch(character.url);
               const charData = await charResponse.json();
               if (charResponse.ok) {
                 detailedCharacters[character.uid] = charData.result.properties;
-                descriptionCharacters[character.uid] = charData.result.description;
+                descriptionCharacters[character.uid] = charData.result.description; // prueba modificacione descriptionCharacters
               }
             }
-            setStore({ characterscards: data.results, detailedCharacters });
+            setStore({ characterscards: data.results, detailedCharacters, descriptionCharacters }); // prueba modificacione descriptionCharacters
             console.log("Contenido completo del store1:", getStore());
             return true;
           }
-          setStore({ characterscards: [], detailedCharacters: {}, descriptionCharacters: [] });
+          setStore({ characterscards: [], detailedCharacters: {}, descriptionCharacters: {} }); // prueba modificacione descriptionCharacters
           return false;
         } catch (error) {
           console.error("Error fetching characters:", error);
-          setStore({ characterscards: [], detailedCharacters: {} });
+          setStore({ characterscards: [], detailedCharacters: {}, descriptionCharacters: {} });  // prueba modificacione descriptionCharacters
           return false;
         }
       },
